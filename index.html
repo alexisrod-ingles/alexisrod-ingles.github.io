@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PIMIENTA & ALEXIS PROJECT</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI,Arial;
+
+background:linear-gradient(-45deg,#0077ff,#00c6ff,#6dd5ed,#2193b0);
+background-size:400% 400%;
+animation:bg 14s infinite;
+
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{text-align:center;}
+
+button{
+margin:6px;
+padding:10px 16px;
+border:none;
+border-radius:10px;
+background:#0077ff;
+color:white;
+cursor:pointer;
+}
+
+/* ===== FLIP CONTAINER ===== */
+
+.flip-wrapper{
+
+perspective:2000px;
+
+}
+
+.flip-box{
+
+position:relative;
+width:1100px;
+height:560px;
+
+transition:1s;
+
+transform-style:preserve-3d;
+
+}
+
+/* FLIP */
+
+.flip{
+
+transform:rotateY(180deg);
+
+}
+
+/* FRONT + BACK */
+
+.side{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+backface-visibility:hidden;
+
+}
+
+/* BACK */
+
+.back{
+
+transform:rotateY(180deg);
+
+}
+
+/* BOOK */
+
+.book{
+
+width:1100px;
+height:560px;
+
+position:relative;
+
+}
+
+/* PANEL */
+
+.panel{
+
+height:100%;
+
+background:white;
+
+padding:25px;
+
+border-radius:14px;
+
+box-shadow:0 20px 40px rgba(0,0,0,.3);
+
+overflow:auto;
+
+transition:.8s ease;
+
+}
+
+/* IMAGE STYLE */
+
+.panel img{
+
+width:100%;
+
+border-radius:10px;
+
+margin-top:10px;
+
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+
+}
+
+/* COVER */
+
+.cover{
+
+position:absolute;
+
+width:340px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+background:#0077ff;
+
+color:white;
+
+z-index:5;
+
+}
+
+.cover h1{color:white;}
+
+/* INTERIOR */
+
+.interior{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+display:grid;
+
+grid-template-columns:1fr 1fr 1fr;
+
+gap:20px;
+
+opacity:0;
+
+pointer-events:none;
+
+}
+
+.open .cover{
+
+opacity:0;
+
+pointer-events:none;
+
+transform:translateX(-50%) scale(.8);
+
+}
+
+.open .interior{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+/* ICON FLOAT */
+
+.icon{
+
+display:inline-block;
+
+animation:floatIcon 2.5s ease-in-out infinite;
+
+}
+
+@keyframes floatIcon{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-6px);}
+100%{transform:translateY(0);}
+
+}
+
+h1{margin-top:0;color:#0077ff;}
+
+li{margin-bottom:8px;}
+
+/* DARK */
+
+.dark{
+background:#111;
+animation:none;
+}
+
+.dark .panel{
+
+background:#1f1f1f;
+color:white;
+
+}
+
+.present .panel{
+
+font-size:20px;
+
+}
+
+@media print{
+
+button{display:none;}
+
+body{background:white;}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<button onclick="toggle()">📖 Open Triptych</button>
+
+<button onclick="flip()">🔄 Flip Brochure</button>
+
+<button onclick="dark()">🌙 Dark</button>
+
+<button onclick="present()">🎤 Present</button>
+
+
+<div class="flip-wrapper">
+
+<div id="flipbox" class="flip-box">
+
+<!-- ================= FRONT ================= -->
+
+<div class="side front">
+
+<div id="book" class="book">
+
+<!-- COVER -->
+
+<div class="panel cover">
+
+<h1><span class="icon">🏫</span> Cuadro´s University</h1>
+
+<h2>The best experience in your life.</h2>
+
+
+<img src="cuadros.png">
+
+</div>
+
+<!-- INTERIOR -->
+
+<div class="interior">
+
+<div class="panel">
+
+<h1><span class="icon">⭐</span> Unique Features</h1>
+
+<ul>
+
+<li>Modern computer labs.</li>
+<li>Large library.</li>
+<li>Sports facilities.</li>
+<li>Creative innovation centers.</li>
+<li>International exchange programs.</li>
+
+</ul>
+<p>
+
+<h3>Students should explore different ideas and collaborate with others.</h3>
+
+<img src="features.jpg">
+
+</div>
+
+
+<div class="panel">
+
+<h1><span class="icon">📚</span> Academic Programs</h1>
+
+<ul>
+
+<li>Engineering and Technology.</li>
+
+<li>Business Administration.</li>
+
+<li>Digital Arts and Media.</li>
+
+<li>Psychology and Social Sciences.</li>
+
+</ul>
+
+<p>
+
+<h3>Students must complete projects and research activities.
+
+They have to participate in teamwork and presentations.</h3>
+
+<img src="programs.jpg">
+
+</div>
+
+
+<div class="panel">
+
+<h1><span class="icon">📋</span> Rules</h1>
+<h3>Students May</h3>
+
+<ul>
+
+<li>Choose flexible schedules.</li>
+
+<li>Express ideas freely.</li>
+
+<li>Organize student activities.</li>
+
+</ul>
+
+<h3>Students Mustn't</h3>
+
+<ul>
+
+<li>Discriminate against others.</li>
+
+<li>Damage university property.</li>
+
+<li>Harass other students.</li>
+
+</ul>
+
+
+
+<img src="rules.jpg">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= BACK ================= -->
+
+<div class="side back">
+
+<div class="book">
+
+<div class="interior" style="opacity:1;pointer-events:auto;">
+
+<div class="panel">
+
+
+<h1><span class="icon">🎓</span> About Us</h1>
+<p>
+
+<h3>Cuadro´s University</h3> Focuses on innovation and personal freedom.<br><br>
+
+Students should develop critical thinking and creativity.<br><br>
+
+Our mission is to prepare global professionals and leaders.
+
+</p>
+<img src="about.jpg">
+
+</div>
+
+<div class="panel">
+
+
+<h1><span class="icon">⚽</span> Activities</h1>
+<ul>
+
+<li>Soccer and basketball teams.</li>
+
+<li>Gym and fitness center.</li>
+
+<li>Swimming pool.</li>
+
+<li>Yoga and wellness programs.</li>
+
+<li>University tournaments.</li>
+
+</ul>
+
+<p>
+
+<h3>Students should participate in sports to maintain a healthy lifestyle.
+
+Athletes must respect fair play and teamwork.</h3>
+
+</p>
+<img src="sports.jpg">
+
+</div>
+
+<div class="panel">
+
+<h1><span class="icon">📞</span>Contact</h1>
+<p>
+
+<h3>Email: info@Cuadro´s.edu.mx</h3>
+
+<h4>Phone: +52 555 123 4567</h4><br>
+
+Campus Address: Innovation Avenue 100.
+
+Office Hours: Monday to Friday 8:00 am to 6:00 pm.
+
+</p>
+
+<img src="final.png">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggle(){
+
+document.getElementById("book")
+.classList.toggle("open");
+
+}
+
+function flip(){
+
+document.getElementById("flipbox")
+.classList.toggle("flip");
+
+}
+
+function dark(){
+
+document.body.classList.toggle("dark");
+
+}
+
+function present(){
+
+document.body.classList.toggle("present");
+
+}
+
+</script>
+
+</body>
+</html>
